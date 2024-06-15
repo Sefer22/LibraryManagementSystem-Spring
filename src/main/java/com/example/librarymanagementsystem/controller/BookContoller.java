@@ -44,6 +44,13 @@ public class BookContoller {
             return ResponseEntity.badRequest().build();
         }
     }
-
-
+    @PostMapping("/{bookId}/return")
+    public ResponseEntity<Book> returnBook(@PathVariable Long bookId) {
+        Book returnedBook = bookService.returnBook(bookId);
+        if(returnedBook!=null) {
+            return ResponseEntity.ok(returnedBook);
+        }else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
