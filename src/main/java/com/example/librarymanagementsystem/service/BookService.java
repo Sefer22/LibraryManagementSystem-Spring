@@ -23,4 +23,13 @@ public class BookService {
     public Book findById(Long id) {
         return bookRepository.findById(id).orElse(null);
     }
+
+    public Book save(Book book) {
+        return bookRepository.save(book);
+    }
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+
 }
