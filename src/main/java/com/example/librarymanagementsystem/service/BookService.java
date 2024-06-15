@@ -42,5 +42,14 @@ public class BookService {
         }
         return null;
     }
+    public Book returnBook(Long bookId) {
+        Book book = findById(bookId);
+        if(book!=null && book.isBorrowed()) {
+            book.setBorrowedBy(null);
+            book.setBorrowed(false);
+            return save(book);
+        }
+        return null;
+    }
 
 }
