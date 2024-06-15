@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystem.service;
 
 import com.example.librarymanagementsystem.entity.Book;
+import com.example.librarymanagementsystem.entity.User;
 import com.example.librarymanagementsystem.repository.BookRepository;
 import com.example.librarymanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,16 @@ public class BookService {
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
+    public Book borrowBook(Long bookId,Long userId){
+        Book book = findById(bookId);
+        User user = userRepository.findById(userId).orElse(null);
 
+        if(book!=null && !book.isBorrowed() && user!=null) {
+            book.setBorrowedBy(user);
+            book.setBorrowed(true);
+            return save(book);
+        }
+        return null;
+    }
 
 }
