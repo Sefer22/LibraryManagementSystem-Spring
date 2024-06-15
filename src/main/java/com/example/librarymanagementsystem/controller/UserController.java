@@ -3,10 +3,7 @@ package com.example.librarymanagementsystem.controller;
 import com.example.librarymanagementsystem.entity.User;
 import com.example.librarymanagementsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User addUser() {
-
+    public User addUser(@RequestBody User user) {
+        return userService.save(user);
     }
 }
